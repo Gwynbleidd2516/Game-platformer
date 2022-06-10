@@ -23,12 +23,12 @@ public:
 		mTexture.loadFromFile(aTexturePath);
 		mSprite.setTexture(mTexture);
 		mSprite.setTextureRect(mRect);
-		mNumberTale = aNumberTales-1;
-		
+		mNumberTale = aNumberTales - 1;
+
 	}
 
 	void spritesActivation(int aTimer, bool act) {
-		if (mClock.getElapsedTime().asMilliseconds() > aTimer && act==true) {
+		if (mClock.getElapsedTime().asMilliseconds() > aTimer && act == true) {
 			if (i >= mNumberTale) {
 				i = 0;
 				mRect.left = 0;
