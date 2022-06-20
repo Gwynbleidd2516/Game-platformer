@@ -22,64 +22,23 @@ private:
 	StyleOfSet mStyle;
 
 public:
-	void setSprites(std::string aTexturePath, IntRect aRect, int aNumberTales, StyleOfSet aStyle) {
-		mStyle = aStyle;
-		mSize = aRect.width;
-		Frames.push_back(aRect);
-		for (int i = 1; i < aNumberTales; i++) {
-			Frames.push_back(Frames[i - 1]);
-			Frames[i].left += mSize;
-		}
-		mRect = aRect;
-		mTexture.loadFromFile(aTexturePath);
-		mSprite.setTexture(mTexture);
-		mSprite.setTextureRect(Frames[0]);
-		mNumberTale = aNumberTales-1;
-	}
+	void setSprites(std::string aTexturePath, IntRect aRect, int aNumberTales, StyleOfSet aStyle);
 
-	void spritesActivation(int aTimer, bool act) {
-		if (mClock.getElapsedTime().asMilliseconds() > aTimer && act==true && (mStyle==StyleOfSet::cycle|| mStyle == StyleOfSet::withEnd)) {
-			if (i >= mNumberTale && mStyle==StyleOfSet::cycle) {
-				i = 0;
-				FrameEnd = true;
-			}
-			else {
-				i++;
-				FrameEnd = false;
-			}
-			mSprite.setTextureRect(Frames[i]);
-			mClock.restart();
-		}
-	}
+	void spritesActivation(int aTimer, bool act);
 
-	bool isOverSpriteSet() {
-		return FrameEnd;
-	}
+	bool isOverSpriteSet();
 
-	void setPosition(float x, float y) {
-		mSprite.setPosition(x, y);
-	}
+	void setPosition(float x, float y);
 
-	Vector2f getPosition() {
-		return mSprite.getPosition();
-	}
+	Vector2f getPosition();
 
-	void move(float x, float y) {
-		mSprite.move(x, y);
-	}
+	void move(float x, float y);
 
-	void setScale(float x, float y) {
-		mSprite.setScale(x, y);
-		
-	}
+	void setScale(float x, float y);
 
-	Sprite getSprite() {
-		return mSprite;
-	}
+	Sprite getSprite();
 
-	void getSpriteNumber(int aNumber) {
-		mSprite.setTextureRect(Frames[aNumber]);
-	}
+	void getSpriteNumber(int aNumber);
 };
 
 #endif // !SPRITESET
