@@ -122,7 +122,7 @@ public:
 		}
 	}
 
-	bool isCollisionLine(Object aObject, RenderWindow& wn) {
+	bool isCollisionLine(Object aObject) {
 		bool collision = false;
 		float x = aObject.getPosition().x - mRectang.getPosition().x;
 		float y = aObject.getPosition().y - mRectang.getPosition().y;
@@ -132,7 +132,6 @@ public:
 		ToTheObject.setPoint(1, aObject.getPosition());
 		ToTheObject.setPoint(2, Vector2f(aObject.getPosition().x, aObject.getPosition().y + 1));
 		ToTheObject.setPoint(3, Vector2f(mRectang.getPosition().x + 1, mRectang.getPosition().y));
-		wn.draw(ToTheObject);
 		for (int i = 0; i < collRect.size(); i++) {
 			if (ToTheObject.getGlobalBounds().intersects(collRect[i])) return true;
 			else collision = false;
