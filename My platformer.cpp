@@ -99,7 +99,7 @@ int main()
 		//cout << ObPlayer.isCollision(Cube.getGlobalBounds()) << endl;
 		Cube.pursue(ObPlayer.getPosition(), 2);
 
-		cout << Cube.isCollisionLine(ObPlayer,window) << endl;
+		cout << Cube.isCollisionLine(ObPlayer) << endl;
 
 		window.clear();
 		window.draw(spBackGround);
@@ -107,7 +107,6 @@ int main()
 		Wall2.render(window, false);
 		Cube.render(window, false);
 		ObPlayer.render(window, true);
-		Cube.isCollisionLine(ObPlayer, window);
 		window.display();
 	}
 
