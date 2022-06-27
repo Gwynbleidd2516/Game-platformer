@@ -1,13 +1,8 @@
-#include<SFML/Graphics.hpp>
 #include"Object.h"
 
-void Object::setObject(Vector2f aVector, Color aColor, Point aPoint) {
+void Object::setObject(Vector2f aVector, Color aColor) {
 	mRectang.setSize(aVector);
 	mRectang.setFillColor(aColor);
-	mPoint = aPoint;
-	if (mPoint == Point::Centre) {
-		mRectang.setPosition(mRectang.getPosition().x - (mRectang.getSize().x) / 2, mRectang.getPosition().y - (mRectang.getSize().y) / 2);
-	}
 }
 
 void Object::setPosition(float x, float y) {
@@ -46,13 +41,10 @@ void Object::move(float x, float y) {
 		}
 		else iscollision = false;
 	}
-
 }
 
 void Object::setScale(float x, float y) {
 	mRectang.setScale(x, y);
-	//if (x < 0)
-		//mRectang.move(mRectang.getSize().x, 0);
 }
 
 void Object::render(RenderWindow& wn, bool g) {
@@ -87,13 +79,16 @@ float Object::getDistanceTo(Vector2f aObject) {
 	float distance;
 	x = pow((aObject.x - mRectang.getPosition().x), 2);
 	y = pow((aObject.y - mRectang.getPosition().y), 2);
+	
 	distance = x + y;
 	return sqrt(distance);
 }
 
 void Object::pursue(Vector2f aVector, float aSpeed) {
-	float x = aVector.x - mRectang.getPosition().x;
-	float y = aVector.y - mRectang.getPosition().y;
+	float x;
+	float y;
+	x = aVector.x - mRectang.getPosition().x;
+	y = aVector.y - mRectang.getPosition().y;
 	float distance = sqrt(pow(x, 2) + pow(y, 2));
 	if (distance > 1) {
 		mRectang.move((x * aSpeed) / distance, (y * aSpeed) / distance);
@@ -108,9 +103,10 @@ bool Object::isCollisionLine(Object aObject) {
 	bool collision = false;
 	ToTheObject.setPointCount(4);
 	ToTheObject.setPoint(0, mRectang.getPosition());
-	ToTheObject.setPoint(1, aObject.getPosition());
-	ToTheObject.setPoint(2, Vector2f(aObject.getPosition().x, aObject.getPosition().y + 1));
-	ToTheObject.setPoint(3, Vector2f(mRectang.getPosition().x + 1, mRectang.getPosition().y));
+	ToTheObject.setPoint(1, Vector2f(mRectang.getPosition().x + 1, mRectang.getPosition().y));
+	ToTheObject.setPoint(2, aObject.getPosition());
+	ToTheObject.setPoint(3, Vector2f(aObject.getPosition().x, aObject.getPosition().y + 1));
+	
 	for (int i = 0; i < collRect.size(); i++) {
 		if (ToTheObject.getGlobalBounds().intersects(collRect[i])) return true;
 		else collision = false;

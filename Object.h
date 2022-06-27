@@ -7,8 +7,6 @@
 using namespace sf;
 using namespace std;
 
-enum class Point{ Default, Centre};
-
 class Object {
 
 private:
@@ -22,11 +20,11 @@ private:
 	float mObjectx = mRectang.getPosition().x;
 	float mObjecty = mRectang.getPosition().y;
 	vector<FloatRect> collRect;
-	Point mPoint;
+	Vector2f moveVector;
 
 public:
 
-	void setObject(Vector2f aVector, Color aColor, Point aPoint);
+	void setObject(Vector2f aVector, Color aColor);
 
 	void setPosition(float x, float y);
 

@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include"SpriteSet.h"
 
 void SpriteSet::setSprites(std::string aTexturePath, IntRect aRect, int aNumberTales, StyleOfSet aStyle) {
@@ -56,6 +55,6 @@ Sprite SpriteSet::getSprite() {
 	return mSprite;
 }
 
-void SpriteSet::getSpriteNumber(int aNumber) {
+void SpriteSet::setSpriteNumber(int aNumber) {
 	mSprite.setTextureRect(Frames[aNumber]);
 }

@@ -38,7 +38,7 @@ public:
 
 	Sprite getSprite();
 
-	void getSpriteNumber(int aNumber);
+	void setSpriteNumber(int aNumber);
 };
 
 #endif // !SPRITESET
